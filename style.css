@@ -1,0 +1,127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+}
+
+body {
+  background: #020617;
+  color: white;
+}
+
+body.light {
+  background: #f8fafc;
+  color: #111;
+}
+
+/* HEADER */
+header {
+  height: 60px;
+  background: linear-gradient(90deg,#020617,#020617,#020617);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand img {
+  width: 34px;
+}
+
+.actions button {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  background: #020617;
+}
+
+body.light .tabs {
+  background: #e5e7eb;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tab.active {
+  border-bottom: 3px solid #2563eb;
+}
+
+/* WORKSPACE */
+.workspace {
+  display: flex;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
+.editor-panel {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* RESIZER */
+#resizer {
+  width: 6px;
+  background: #2563eb;
+  cursor: col-resize;
+}
+
+/* OUTPUT */
+#output {
+  flex: 1;
+  border: none;
+  background: white;
+}
+
+/* CODEMIRROR FIX */
+.CodeMirror {
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* CONSOLE */
+#console {
+  height: 30px;
+  padding: 6px 12px;
+  background: #020617;
+  font-size: 13px;
+}
+
+body.light #console {
+  background: #e5e7eb;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .workspace {
+    flex-direction: column;
+  }
+
+  #resizer {
+    height: 6px;
+    width: 100%;
+    cursor: row-resize;
+  }
+}

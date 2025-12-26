@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Webnophile Compiler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CodeMirror -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/eclipse.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closetag.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark">
+
+<header>
+  <div class="brand">
+    <img src="WEBNOPHILE.png">
+    <span>WEBNOPHILE</span>
+  </div>
+
+  <div class="actions">
+    <button onclick="runCode()">▶ Run</button>
+    <button onclick="saveProject()">💾 Save</button>
+    <button onclick="shareCode()">🔗 Share</button>
+    <button id="themeToggle">☀️</button>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="openTab('html',this)">HTML</button>
+  <button class="tab" onclick="openTab('css',this)">CSS</button>
+  <button class="tab" onclick="openTab('js',this)">JS</button>
+</div>
+
+<div class="workspace">
+  <div class="editor-panel"></div>
+  <div id="resizer"></div>
+  <iframe id="output"></iframe>
+</div>
+
+<div id="console">Console ready…</div>
+
+<script src="script.js"></script>
+</body>
+</html>
