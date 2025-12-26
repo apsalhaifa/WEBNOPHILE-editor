@@ -131,29 +131,51 @@ function setupResizer() {
   const right = document.getElementById("output");
   let dragging = false;
 
-  resizer.onmousedown = () => {
+  resizer.addEventListener("mousedown", startDrag);
+  resizer.addEventListener("touchstart", startDrag);
+
+  document.addEventListener("mouseup", stopDrag);
+  document.addEventListener("touchend", stopDrag);
+
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("touchmove", drag);
+
+  function startDrag(e) {
     dragging = true;
     document.body.style.userSelect = "none";
-  };
+  }
 
-  document.onmouseup = () => {
+  function stopDrag() {
     dragging = false;
     document.body.style.userSelect = "auto";
-  };
+  }
 
-  document.onmousemove = e => {
+  function drag(e) {
     if (!dragging) return;
 
-    const total = document.querySelector(".workspace").offsetWidth;
-    const leftWidth = (e.clientX / total) * 100;
+    if (window.innerWidth > 768) {
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      const total = document.querySelector(".workspace").offsetWidth;
+      const percent = (x / total) * 100;
 
-    if (leftWidth > 20 && leftWidth < 80) {
-      left.style.flex = `0 0 ${leftWidth}%`;
-      right.style.flex = `0 0 ${100 - leftWidth}%`;
+      if (percent > 20 && percent < 80) {
+        left.style.flex = `0 0 ${percent}%`;
+        right.style.flex = `0 0 ${100 - percent}%`;
+      }
+    } else {
+      const y = e.touches ? e.touches[0].clientY : e.clientY;
+      const total = document.querySelector(".workspace").offsetHeight;
+      const percent = (y / total) * 100;
 
-      htmlEditor.refresh();
-      cssEditor.refresh();
-      jsEditor.refresh();
+      if (percent > 30 && percent < 70) {
+        left.style.height = percent + "%";
+        right.style.height = 100 - percent + "%";
+      }
     }
-  };
+
+    htmlEditor.refresh();
+    cssEditor.refresh();
+    jsEditor.refresh();
+  }
 }
+
